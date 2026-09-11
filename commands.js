@@ -5,39 +5,19 @@ Office.onReady(() => {
     );
 });
 
+function approveDocument(event) {
+    const payload = {
+        type: "approveDocument",
+        source: "office-addin"
+    };
 
-async function approveDocument(event) {
-    try {
-        console.log("Approve button clicked");
+    console.log("Posting approval message:", payload);
 
-        const response = await fetch(
-            "https://myapp.example.com/api/documents/approve",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    source: "office-addin"
-                })
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(
-                `HTTP ${response.status}`
-            );
-        }
-
-        console.log("Document approved");
-
-    } catch (error) {
-        console.error(
-            "Approval failed:",
-            error
-        );
-
-    } finally {
-        event.completed();
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage(payload, "*");
+    } else {
+        window.postMessage(payload, "*");
     }
+
+    event.completed();
 }

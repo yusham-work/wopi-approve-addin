@@ -1,154 +1,204 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp
-  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-  xsi:type="TaskPaneApp">
+    xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+    xsi:type="TaskPaneApp">
 
-  <Id>8d5e5f8a-6f3b-4f0e-9c21-123456789abc</Id>
+    <Id>8d5e5f8a-6f3b-4f0e-9c21-123456789abc</Id>
+    <Version>1.0.0.0</Version>
+    <ProviderName>My Application</ProviderName>
+    <DefaultLocale>en-US</DefaultLocale>
+    <DisplayName DefaultValue="My Application"/>
+    <Description DefaultValue="My Application Office Add-in"/>
+    <IconUrl DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icons/icon-32.png"/>
 
-  <Version>1.0.0.0</Version>
+    <SupportUrl DefaultValue="https://yusham-work.github.io/wopi-approve-addin/support.html"/>
 
-  <ProviderName>My Application</ProviderName>
-
-  <DefaultLocale>en-US</DefaultLocale>
-
-  <DisplayName DefaultValue="My Application" />
-
-  <Description DefaultValue="My Application Office Add-in" />
-
-  <IconUrl DefaultValue="https://myapp.example.com/office-addin/icon-32.png" />
-  <SupportUrl DefaultValue="https://myapp.example.com" />
-
-  <Hosts>
-    <Host Name="Workbook" />
-  </Hosts>
-
-  <Requirements>
-    <Sets>
-      <Set Name="ExcelApi" MinVersion="1.1" />
-    </Sets>
-  </Requirements>
-
-  <DefaultSettings>
-    <SourceLocation
-      DefaultValue="https://myapp.example.com/office-addin/taskpane.html" />
-  </DefaultSettings>
-
-  <Permissions>ReadWriteDocument</Permissions>
-
-  <VersionOverrides
-    xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
-    xsi:type="VersionOverridesV1_0">
-
-    <Requirements>
-      <bt:Sets DefaultMinVersion="1.3">
-        <bt:Set Name="AddinCommands" />
-      </bt:Sets>
-    </Requirements>
-
+    <!-- Word + Excel + PowerPoint -->
     <Hosts>
-      <Host xsi:type="Workbook">
-        <DesktopFormFactor>
-
-          <!-- JavaScript-файл для команд -->
-          <FunctionFile resid="Commands.Url" />
-
-          <!-- Додаємо кнопку -->
-          <ExtensionPoint xsi:type="PrimaryCommandSurface">
-
-            <OfficeTab id="TabHome">
-
-              <Group id="MyApplicationGroup">
-
-                <Label resid="GroupLabel" />
-
-                <Control
-                  xsi:type="Button"
-                  id="ApproveButton">
-
-                  <Label resid="ApproveButton.Label" />
-
-                  <Supertip>
-                    <Title resid="ApproveButton.Label" />
-                    <Description resid="ApproveButton.Description" />
-                  </Supertip>
-
-                  <Icon>
-                    <bt:Image size="16"
-                      resid="Icon16" />
-                    <bt:Image size="32"
-                      resid="Icon32" />
-                    <bt:Image size="80"
-                      resid="Icon80" />
-                  </Icon>
-
-                  <Action xsi:type="ExecuteFunction">
-                    <FunctionName>
-                      approveDocument
-                    </FunctionName>
-                  </Action>
-
-                </Control>
-
-              </Group>
-
-            </OfficeTab>
-
-          </ExtensionPoint>
-
-        </DesktopFormFactor>
-      </Host>
+        <Host Name="Document"/>
+        <Host Name="Workbook"/>
+        <Host Name="Presentation"/>
     </Hosts>
 
-    <Resources>
+    <DefaultSettings>
+        <SourceLocation DefaultValue="https://yusham-work.github.io/wopi-approve-addin/taskpane.html"/>
+    </DefaultSettings>
 
-      <bt:Images>
+    <Permissions>ReadWriteDocument</Permissions>
 
-        <bt:Image
-          id="Icon16"
-          DefaultValue="https://myapp.example.com/office-addin/icon-16.png" />
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
 
-        <bt:Image
-          id="Icon32"
-          DefaultValue="https://myapp.example.com/office-addin/icon-32.png" />
+        <Requirements>
+            <bt:Sets DefaultMinVersion="1.3">
+                <bt:Set Name="AddinCommands"/>
+            </bt:Sets>
+        </Requirements>
 
-        <bt:Image
-          id="Icon80"
-          DefaultValue="https://myapp.example.com/office-addin/icon-80.png" />
+        <Hosts>
 
-      </bt:Images>
+            <!-- ================================================= -->
+            <!-- WORD                                             -->
+            <!-- ================================================= -->
 
-      <bt:Urls>
+            <Host xsi:type="Document">
+                <DesktopFormFactor>
+                    <FunctionFile resid="Commands.Url"/>
+                    <ExtensionPoint xsi:type="PrimaryCommandSurface">
+                        <OfficeTab id="TabHome">
+                            <Group id="MyApplicationGroup">
+                                <Label resid="GroupLabel"/>
+                                <Control
+                                    xsi:type="Button"
+                                    id="ApproveButton">
+                                    <Label resid="ApproveButton.Label"/>
+                                    <Supertip>
+                                        <Title resid="ApproveButton.Label"/>
+                                        <Description resid="ApproveButton.Description"/>
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image
+                                            size="16"
+                                            resid="Icon16"/>
+                                        <bt:Image
+                                            size="32"
+                                            resid="Icon32"/>
+                                        <bt:Image
+                                            size="80"
+                                            resid="Icon80"/>
+                                    </Icon>
 
-        <bt:Url
-          id="Commands.Url"
-          DefaultValue="https://myapp.example.com/office-addin/commands.html" />
+                                    <Action xsi:type="ExecuteFunction">
+                                        <FunctionName>approveDocument</FunctionName>
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                </DesktopFormFactor>
+            </Host>
 
-      </bt:Urls>
+            <!-- ================================================= -->
+            <!-- EXCEL                                            -->
+            <!-- ================================================= -->
+            <Host xsi:type="Workbook">
+                <DesktopFormFactor>
+                    <FunctionFile resid="Commands.Url"/>
+                    <ExtensionPoint xsi:type="PrimaryCommandSurface">
+                        <OfficeTab id="TabHome">
+                            <Group id="MyApplicationGroup">
+                                <Label resid="GroupLabel"/>
+                                <Control
+                                    xsi:type="Button"
+                                    id="ApproveButton">
 
-      <bt:ShortStrings>
+                                    <Label resid="ApproveButton.Label"/>
+                                    <Supertip>
+                                        <Title resid="ApproveButton.Label"/>
+                                        <Description resid="ApproveButton.Description"/>
+                                    </Supertip>
 
-        <bt:String
-          id="GroupLabel"
-          DefaultValue="My Application" />
+                                    <Icon>
+                                        <bt:Image
+                                            size="16"
+                                            resid="Icon16"/>
+                                        <bt:Image
+                                            size="32"
+                                            resid="Icon32"/>
+                                        <bt:Image
+                                            size="80"
+                                            resid="Icon80"/>
+                                    </Icon>
 
-        <bt:String
-          id="ApproveButton.Label"
-          DefaultValue="Погодити" />
+                                    <Action xsi:type="ExecuteFunction">
+                                        <FunctionName>approveDocument</FunctionName>
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                </DesktopFormFactor>
+            </Host>
 
-      </bt:ShortStrings>
+            <!-- ================================================= -->
+            <!-- POWERPOINT                                        -->
+            <!-- ================================================= -->
+            <Host xsi:type="Presentation">
+                <DesktopFormFactor>
+                    <FunctionFile resid="Commands.Url"/>
+                    <ExtensionPoint xsi:type="PrimaryCommandSurface">
+                        <OfficeTab id="TabHome">
+                            <Group id="MyApplicationGroup">
+                                <Label resid="GroupLabel"/>
+                                <Control
+                                    xsi:type="Button"
+                                    id="ApproveButton">
+                                    <Label resid="ApproveButton.Label"/>
+                                    <Supertip>
+                                        <Title resid="ApproveButton.Label"/>
+                                        <Description resid="ApproveButton.Description"/>
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image
+                                            size="16"
+                                            resid="Icon16"/>
+                                        <bt:Image
+                                            size="32"
+                                            resid="Icon32"/>
+                                        <bt:Image
+                                            size="80"
+                                            resid="Icon80"/>
+                                    </Icon>
 
-      <bt:LongStrings>
+                                    <Action xsi:type="ExecuteFunction">
+                                        <FunctionName>approveDocument</FunctionName>
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                </DesktopFormFactor>
+            </Host>
+        </Hosts>
 
-        <bt:String
-          id="ApproveButton.Description"
-          DefaultValue="Погодити поточний документ" />
+        <!-- ===================================================== -->
+        <!-- RESOURCES                                             -->
+        <!-- ===================================================== -->
+        <Resources>
+            <bt:Images>
+                <bt:Image
+                    id="Icon16"
+                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icon-16.png"/>
 
-      </bt:LongStrings>
+                <bt:Image
+                    id="Icon32"
+                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icon-32.png"/>
 
-    </Resources>
+                <bt:Image
+                    id="Icon80"
+                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icon-80.png"/>
+            </bt:Images>
 
-  </VersionOverrides>
+            <bt:Urls>
+                <bt:Url
+                    id="Commands.Url"
+                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/commands.html"/>
 
+            </bt:Urls>
+            <bt:ShortStrings>
+                <bt:String
+                    id="GroupLabel"
+                    DefaultValue="My Application"/>
+                <bt:String
+                    id="ApproveButton.Label"
+                    DefaultValue="Погодити"/>
+            </bt:ShortStrings>
+            <bt:LongStrings>
+                <bt:String
+                    id="ApproveButton.Description"
+                    DefaultValue="Погодити поточний документ"/>
+            </bt:LongStrings>
+        </Resources>
+    </VersionOverrides>
 </OfficeApp>
