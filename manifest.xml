@@ -49,6 +49,11 @@
                         <OfficeTab id="TabHome">
                             <Group id="MyApplicationGroup">
                                 <Label resid="GroupLabel"/>
+                                <Icon>
+                                    <bt:Image size="16" resid="Icon16"/>
+                                    <bt:Image size="32" resid="Icon32"/>
+                                    <bt:Image size="80" resid="Icon80"/>
+                                </Icon>
                                 <Control
                                     xsi:type="Button"
                                     id="ApproveButton">
@@ -89,6 +94,11 @@
                         <OfficeTab id="TabHome">
                             <Group id="MyApplicationGroup">
                                 <Label resid="GroupLabel"/>
+                                <Icon>
+                                    <bt:Image size="16" resid="Icon16"/>
+                                    <bt:Image size="32" resid="Icon32"/>
+                                    <bt:Image size="80" resid="Icon80"/>
+                                </Icon>
                                 <Control
                                     xsi:type="Button"
                                     id="ApproveButton">
@@ -131,6 +141,11 @@
                         <OfficeTab id="TabHome">
                             <Group id="MyApplicationGroup">
                                 <Label resid="GroupLabel"/>
+                                <Icon>
+                                    <bt:Image size="16" resid="Icon16"/>
+                                    <bt:Image size="32" resid="Icon32"/>
+                                    <bt:Image size="80" resid="Icon80"/>
+                                </Icon>
                                 <Control
                                     xsi:type="Button"
                                     id="ApproveButton">
@@ -169,15 +184,15 @@
             <bt:Images>
                 <bt:Image
                     id="Icon16"
-                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icon-16.png"/>
+                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icons/icon-16.png"/>
 
                 <bt:Image
                     id="Icon32"
-                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icon-32.png"/>
+                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icons/icon-32.png"/>
 
                 <bt:Image
                     id="Icon80"
-                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icon-80.png"/>
+                    DefaultValue="https://yusham-work.github.io/wopi-approve-addin/icons/icon-80.png"/>
             </bt:Images>
 
             <bt:Urls>

@@ -1,0 +1,15 @@
+{
+  "name": "wopi-approve-addin",
+  "version": "1.0.0",
+  "description": "WOPI Document Approve Office Add-in",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "office-addin",
+    "wopi"
+  ],
+  "author": "",
+  "license": "MIT"
+}
